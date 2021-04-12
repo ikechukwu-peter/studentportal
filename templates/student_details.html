@@ -1,0 +1,95 @@
+{%extends 'base.html' %} {% block title%}
+<title>Portal - Details</title>
+{% endblock %} {%block content %}
+<div class="container-fluid">
+  <div
+    class="col-md-12 main-container"
+    style="background-color: white; box-shadow: 1px 1px #fff"
+  >
+    <div
+      class="text-center col-sm-5 image-container"
+      style="background-color: #cc8b5e; border-radius: 3px"
+    >
+      <!-- <img src="{{url_for('static', filename='images/')}}" -->
+      <img src="/static/images/{{student['image']}}" class="col-sm-12" />
+
+      <div class="col-sm-12" style="padding: 3px">
+        <h3 style="color: white; font-weight: bold">
+          {{ student['fname']}} {{student['mname']}} {{student['lname']}} <br />
+          <span class="label label-info status"> undecided</span>
+        </h3>
+      </div>
+    </div>
+    <div class="col-sm-7 info-container">
+      <legend class="bg-info">Personal Information</legend>
+      <div class="card col-sm-12">
+        <h4>Email: {{ student['email']}}</h4>
+      </div>
+      <div class="card col-sm-12">
+        <h4>Gender: {{ student['gender']}}</h4>
+      </div>
+      <div class="card col-sm-12">
+        <h4>Phone Number: {{student['phone']}}</h4>
+      </div>
+      <div class="card col-sm-12">
+        <h4>Date Of Birth: {{student['dob']}}</h4>
+      </div>
+      <div class="card col-sm-12">
+        <h4>Address: {{student['address']}}</h4>
+      </div>
+    </div>
+    <div class="col-md-12" style="float: left; clear: left; margin-top: 10px">
+      <legend class="bg-info">Other Information</legend>
+      <div class="col-sm-3">
+        <div class="card col-sm-12">
+          <h4>State Of Origin: {{student['state']}}</h4>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card col-sm-12">
+          <h4>Local Govt: {{student['lg']}}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12" style="float: left; clear: left; margin-top: 10px">
+      <legend class="bg-info">Academics Related Information</legend>
+      <div class="col-sm-3">
+        <div class="card col-sm-12">
+          <h4>Next Of Kin: {{student['kin']}}</h4>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card col-sm-12">
+          <h4>Jamb Score: {{student['score']}}</h4>
+        </div>
+      </div>
+      <div class="col-sm-6 row">
+        <div class="col-sm-5">
+          <h4 style="float: left; margin-left: 5px">
+            Status: <span class="status" id="status_update">undecided</span>
+          </h4>
+        </div>
+        <div class="col-sm-7">
+          <h4 style="display: inline-block">Change Status:</h4>
+          <select
+            style="
+              display: inline-block;
+              margin-top: 10px;
+              height: 30px;
+              font-size: 18px;
+            "
+            name="status"
+            id="status"
+            class="setStatus"
+            onchange="setStatus(event)"
+          >
+            <option value="none">Change-Status</option>
+
+            <option value="admitted">Admitted</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

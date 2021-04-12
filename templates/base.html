@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/bootstrap.min.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/site.css')}}"
+    />
+    <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
+    {% block title%} {% endblock%}
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle"
+            data-toggle="collapse"
+            data-target="#myNavbar"
+          >
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a
+            class="navbar-brand"
+            href="/"
+            id="logo"
+            style="font-family: monospace"
+            >USTACKY</a
+          >
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="{{url_for('index')}}" style="font-family: monospace"
+                >Home</a
+              >
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="{{url_for('portal')}}" style="font-family: monospace"
+                >Get Started</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% for
+    category, message in messages %}
+    <div class="alert alert-{{category}} alert-dismissable text-center">
+      <a href="" class="close" data-dismiss="alert" aria-label="close">
+        &times</a
+      >
+      <h3>{{message}}</h3>
+    </div>
+
+    {% else %} {% endfor %} {% endwith %}
+    <div class="container-fluid">
+      {% block content%} {% endblock%}
+
+      <span class="footer">
+        <p style="margin-top: 15px; font-family: monospace">
+          All rights reserved @Ustacky 2021
+        </p>
+      </span>
+    </div>
+  </body>
+</html>
