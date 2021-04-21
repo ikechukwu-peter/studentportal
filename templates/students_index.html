@@ -32,7 +32,7 @@
           </td>
           <td>{{student['gender']}}</td>
           <td>{{student['score']}}</td>
-          <td>admitted</td>
+          <td>{{student['status']}}</td>
           <td>
             <a
               href="{{ url_for('student_details', id=student['id'])}}"
