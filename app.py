@@ -24,8 +24,8 @@ app.config['MYSQL_DATABASE_DB'] =  Config.MYSQL_DATABASE_DB
 app.config['MYSQL_DATABASE_USER'] = Config.MYSQL_DATABASE_USER
 app.config['MYSQL_DATABASE_PASSWORD'] =  Config.MYSQL_DATABASE_PASSWORD
 
+# pymysql for converting  list to  dictionary
 mysql = MySQL(app, cursorclass=pymysql.cursors.DictCursor)
-# pymysql for convert  list to  dictionary
 
 @app.route("/")
 def index():
