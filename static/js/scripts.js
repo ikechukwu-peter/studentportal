@@ -3,7 +3,7 @@ const setStatus = async () => {
   const element = document.getElementById("status");
   //selecting the option filed
   let newStatus = element.options[element.selectedIndex].value;
-  //gettin the status field that will be updated later dynamically
+  //getting the status field that will be updated later dynamically
   const ui_status = document.querySelectorAll(".status");
   //gets the user id
   const user_id = window.location.href.split("/")[5];
@@ -22,7 +22,7 @@ const setStatus = async () => {
         body: JSON.stringify(newStatus),
       });
 
-      //updating the UI after server has updated the value successfully
+      //updating the UI after the server has updated the value successfully
       for (var i = 0; i < ui_status.length; i++) {
         ui_status[i].innerHTML = newStatus;
       }
