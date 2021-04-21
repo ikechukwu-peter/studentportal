@@ -14,7 +14,8 @@
     <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
     <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
-    {% block title%} {% endblock%}
+    {% block title%}
+	{% endblock%}
   </head>
   <body>
     <nav class="navbar navbar-inverse">
@@ -65,9 +66,12 @@
       <h3>{{message}}</h3>
     </div>
 
-    {% else %} {% endfor %} {% endwith %}
+    {% else %} 
+	{% endfor %}
+	{% endwith %}
     <div class="container-fluid">
-      {% block content%} {% endblock%}
+      {% block content%}
+	  {% endblock%}
 
       <span class="footer">
         <p style="margin-top: 15px; font-family: monospace">
