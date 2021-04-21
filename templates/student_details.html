@@ -16,7 +16,7 @@
       <div class="col-sm-12" style="padding: 3px">
         <h3 style="color: white; font-weight: bold">
           {{ student['fname']}} {{student['mname']}} {{student['lname']}} <br />
-          <span class="label label-info status"> undecided</span>
+          <span class="label label-info status">{{student['status']}}</span>
         </h3>
       </div>
     </div>
@@ -66,7 +66,8 @@
       <div class="col-sm-6 row">
         <div class="col-sm-5">
           <h4 style="float: left; margin-left: 5px">
-            Status: <span class="status" id="status_update">undecided</span>
+            Status:
+            <span class="status">{{student['status']}}</span>
           </h4>
         </div>
         <div class="col-sm-7">
@@ -81,7 +82,7 @@
             name="status"
             id="status"
             class="setStatus"
-            onchange="setStatus(event)"
+            onchange="setStatus()"
           >
             <option value="none">Change-Status</option>
 
