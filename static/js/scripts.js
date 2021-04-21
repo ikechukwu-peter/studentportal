@@ -1,3 +1,37 @@
+const setStatus = async () => {
+  //selecting the status field
+  const element = document.getElementById("status");
+  //selecting the option filed
+  let newStatus = element.options[element.selectedIndex].value;
+  //gettin the status field that will be updated later dynamically
+  const ui_status = document.querySelectorAll(".status");
+  //gets the user id
+  const user_id = window.location.href.split("/")[5];
+
+  try {
+    //preventing user from submitting the placeholder text or empty filed
+    if (newStatus === "none" || "") {
+      return;
+    } else {
+      //making the request
+      await fetch(`/update_status/${user_id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(newStatus),
+      });
+
+      //updating the UI after server has updated the value successfully
+      for (var i = 0; i < ui_status.length; i++) {
+        ui_status[i].innerHTML = newStatus;
+      }
+    }
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
 var states = [
   {
     state: "Abia",
