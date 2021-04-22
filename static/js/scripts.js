@@ -9,25 +9,26 @@ const setStatus = async () => {
   const user_id = window.location.href.split("/")[5];
 
   try {
-    //preventing user from submitting the placeholder text or empty filed
+    //preventing user from submitting the placeholder text or empty field
     if (newStatus === "none" || "") {
       return;
     } else {
       //making the request
-      await fetch(`/update_status/${user_id}`, {
+      let response = await fetch(`/update_status/${user_id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
         },
         body: JSON.stringify(newStatus),
       });
-
-      //updating the UI after the server has updated the value successfully
+      let result = await response.json();
+      //The DOM||UI is updated with value returned from the server without a refresh or redirect
       for (var i = 0; i < ui_status.length; i++) {
-        ui_status[i].innerHTML = newStatus;
+        ui_status[i].innerHTML = result.status;
       }
     }
   } catch (err) {
+    alert("There was an error processing your request, try again later");
     console.log(err.message);
   }
 };
