@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for , request, current_app, redirect, flash, jsonify, make_response
+from flask import Flask, render_template, url_for , request, current_app, redirect, flash, jsonify
 
 from flaskext.mysql import MySQL
 import pymysql.cursors
@@ -112,9 +112,12 @@ def update_status(id):
     cursor = connection.cursor()
     cursor.execute('UPDATE student SET status=%s WHERE id=%s', (data, student_id ))
     connection.commit()
+    ## The status is fetched from the database and sent to the frontend
+    cursor.execute('SELECT status FROM student WHERE id=%s', (student_id))
+    student_status =  cursor.fetchall()
     cursor.close()
-    message = {'message': 'Updated', 'code': 'SUCCESS',}
-    return make_response(jsonify(data), 204)
+    response = student_status[0]
+    return jsonify(response)
     
 if __name__ == "__main__":
   app.run(debug=True)
