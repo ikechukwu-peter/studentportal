@@ -8,7 +8,7 @@ import os
 
 app = Flask(__name__)
 
-## A class containing all environment variables set in .env and the secret key for flash
+## A class containing all environment variables set in .env 
 class Config(object):
   MYSQL_DATABASE_HOST= os.environ.get('MYSQL_DATABASE_HOST')
   MYSQL_DATABASE_DB= os.environ.get('MYSQL_DATABASE_DB')
