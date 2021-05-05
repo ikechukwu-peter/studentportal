@@ -107,10 +107,10 @@ def dashboard():
 @app.route('/update_status/<id>', methods = ['POST'])
 def update_status(id):
     data = request.json
-      if data == 'admitted':
+    if data =='admitted':
         flash('You have already updated your status', 'warning')
-        return return ('', 204)
-      else:
+        return ('', 204)
+    else:
         student_id = id
         connection = mysql.get_db()
         cursor = connection.cursor()
