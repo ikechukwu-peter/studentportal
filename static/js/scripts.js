@@ -1,7 +1,7 @@
 
 const setStatus = async () => {
   
-  //initialising varibales
+  //initialising variables
   let statusText, statusValue, allStatus, userId, newStatus;
   //selecting the status field
   const element = document.getElementById("status");
