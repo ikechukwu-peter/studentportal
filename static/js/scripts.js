@@ -1,30 +1,44 @@
+
 const setStatus = async () => {
+  
+  //initialising varibales
+  let statusText, statusValue, allStatus, userId, newStatus;
   //selecting the status field
   const element = document.getElementById("status");
   //selecting the option filed
-  let newStatus = element.options[element.selectedIndex].value;
-  //getting the status field that will be updated later dynamically
-  const ui_status = document.querySelectorAll(".status");
-  //gets the user id
-  const user_id = window.location.href.split("/")[5];
+  newStatus = element.options[element.selectedIndex].value;
+
+/**  
+  1. Selecting all the field that contain a class of status
+  2. Converting the value to an array since  a nodelist is returned
+  3. Looping over the text and assigning their values to statusText
+ */
+  allStatus = document.querySelectorAll(".status");
+
+  statusValue = Array.from(allStatus);
+
+  for (value of statusValue) {
+    value = statusText;
+  }
+  //gets the user id 
+  userId = window.location.href.split("/")[5];
 
   try {
-    //preventing user from submitting the placeholder text or empty field
-    if (newStatus === "none" || "") {
+    //Stops User from making a request if they have selected nothing or has already changed status to admitted
+    if (newStatus === "none" || "undefined" || statusText === "admitted") {
       return;
     } else {
       //making the request
-      let response = await fetch(`/update_status/${user_id}`, {
+      await fetch(`/update_status/${userId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
         },
         body: JSON.stringify(newStatus),
       });
-      let result = await response.json();
-      //The DOM||UI is updated with value returned from the server without a refresh or redirect
-      for (var i = 0; i < ui_status.length; i++) {
-        ui_status[i].innerHTML = result.status;
+      //The UI is updated
+      for (value of allStatus) {
+        value.innerHTML = newStatus;
       }
     }
   } catch (err) {
