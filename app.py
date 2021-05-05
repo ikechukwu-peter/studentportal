@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for , request, current_app, redirect, flash, jsonify
+from flask import Flask, render_template, url_for , request, current_app, redirect, flash
 
 from flaskext.mysql import MySQL
 import pymysql.cursors
@@ -107,17 +107,17 @@ def dashboard():
 @app.route('/update_status/<id>', methods = ['POST'])
 def update_status(id):
     data = request.json
-    student_id = id
-    connection = mysql.get_db()
-    cursor = connection.cursor()
-    cursor.execute('UPDATE student SET status=%s WHERE id=%s', (data, student_id ))
-    connection.commit()
-    ## The status is fetched from the database and sent to the frontend
-    cursor.execute('SELECT status FROM student WHERE id=%s', (student_id))
-    student_status =  cursor.fetchall()
-    cursor.close()
-    response = student_status[0]
-    return jsonify(response)
+      if data == 'admitted':
+        flash('You have already updated your status', 'warning')
+        return return ('', 204)
+      else:
+        student_id = id
+        connection = mysql.get_db()
+        cursor = connection.cursor()
+        cursor.execute('UPDATE student SET status=%s WHERE id=%s', (data, student_id ))
+        connection.commit()
+        cursor.close()
+        return ('', 204)
     
 if __name__ == "__main__":
   app.run(debug=True)
