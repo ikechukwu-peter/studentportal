@@ -1,31 +1,20 @@
-
 const setStatus = async () => {
-  
   //initialising variables
-  let statusText, statusValue, allStatus, userId, newStatus;
+  let allStatus, userId, newStatus;
   //selecting the status field
   const element = document.getElementById("status");
   //selecting the option filed
   newStatus = element.options[element.selectedIndex].value;
 
-/**  
-  1. Selecting all the field that contain a class of status
-  2. Converting the value to an array since  a nodelist is returned
-  3. Looping over the text and assigning their values to statusText
- */
+  //Selection of all the status fields that need update
   allStatus = document.querySelectorAll(".status");
 
-  statusValue = Array.from(allStatus);
-
-  for (value of statusValue) {
-    value = statusText;
-  }
-  //gets the user id 
+  //Gets user ID from window.location
   userId = window.location.href.split("/")[5];
 
   try {
-    //Stops User from making a request if they have selected nothing or has already changed status to admitted
-    if (newStatus === "none" || "undefined" || statusText === "admitted") {
+    //Stops User from making a request if sending empty field
+    if (newStatus === "none" || newStatus === "undefined") {
       return;
     } else {
       //making the request
